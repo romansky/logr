@@ -34,7 +34,7 @@ pring error messages with exceptions
 add debug prints which are enable with a global flag
 
     logr.debug("this is a ghost debug message"); // should not print anything
-    require('logr').toggleDebug();
+    require('node-logr').toggleDebug();
     logr.debug("this is a debug message");
     test.js :: 2012-9-3 16:23:51.465 :: DEBUG :: this is a debug message
 
