@@ -11,7 +11,7 @@ Its such a simple logger, we had to shorten its name
 
 when requiring "logr" you can pass the "__filename" magic parameter and it will magically use the file name, you can pass it any other string that does not contain a forward slash
 
-    var logr = require('logr').getLogger(__filename)
+    var logr = require('node-logr').getLogger(__filename)
     
 pring some useful things
 

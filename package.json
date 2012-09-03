@@ -1,5 +1,5 @@
 {
-    "name" : "logr",
+    "name" : "node-logr",
     "version" : "0.0.1",
     "description" : "a super simplistic logger",
     "main" : "./index.js",
