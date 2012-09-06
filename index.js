@@ -58,8 +58,10 @@
 
   })();
 
-  exports.toggleDebug = function() {
-    if (_debug) {
+  exports.toggleDebug = function(isOverride) {
+    if (isOverride != null) {
+      return _debug = isOverride;
+    } else if (_debug) {
       return _debug = false;
     } else {
       return _debug = true;
