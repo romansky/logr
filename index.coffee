@@ -22,5 +22,6 @@ class _Logger
 	debug: (message)=>
 		if _debug then log("DEBUG", @source, message, null)
 
-exports.toggleDebug = ()->
-	if _debug then _debug = false else _debug = true
+exports.toggleDebug = (isOverride)->
+	if isOverride? then _debug = isOverride
+	else if _debug then _debug = false else _debug = true
