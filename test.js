@@ -14,3 +14,9 @@ logr.debug("this is a ghost debug message"); // should not print anything
 require('./').toggleDebug();
 
 logr.debug("this is a debug message");
+
+var cb = function(message){
+	console.log("callback called with:" + message)
+}
+
+logr.errorCB("error with CB", cb)

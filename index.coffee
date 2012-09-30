@@ -21,6 +21,8 @@ class _Logger
 		log("NOTICE", @source, message,null)
 	debug: (message)=>
 		if _debug then log("DEBUG", @source, message, null)
+	errorCB : (message, callback)=>
+		@error(message) ; callback(message)
 
 exports.toggleDebug = (isOverride)->
 	if isOverride? then _debug = isOverride

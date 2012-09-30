@@ -26,6 +26,8 @@
 
     function _Logger(source) {
       this.source = source;
+      this.errorCB = __bind(this.errorCB, this);
+
       this.debug = __bind(this.debug, this);
 
       this.notice = __bind(this.notice, this);
@@ -52,6 +54,11 @@
       if (_debug) {
         return log("DEBUG", this.source, message, null);
       }
+    };
+
+    _Logger.prototype.errorCB = function(message, callback) {
+      this.error(message);
+      return callback(message);
     };
 
     return _Logger;
