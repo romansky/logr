@@ -2,7 +2,7 @@ log = (prefix, source, message, e) ->
 	n = new Date()
 	dateStr = "#{n.getFullYear()}-#{n.getMonth()+1}-#{n.getDate()} #{n.getHours()}:#{n.getMinutes()}:#{n.getSeconds()}.#{n.getMilliseconds()}"
 	console?.log "#{source} :: #{dateStr} :: #{prefix.toUpperCase()} :: #{message}"
-	if e then console?.log e.toString()
+	if e then console?.log e.toString(), e.stack
 
 exports.getLogger = (source)->
 	source = if source.indexOf "/" > 0 then source.split("/").pop() else source
