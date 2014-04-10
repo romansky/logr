@@ -1,6 +1,13 @@
+pad = (value)-> if String(value).length == 1 then "0#{value}" else value
+pad3 = (value)-> 
+	switch String(value).length
+		when 1 then "00#{value}"
+		when 2 then "0#{value}"
+		else value
+
 log = (prefix, source, message, e) ->
 	n = new Date()
-	dateStr = "#{n.getFullYear()}-#{n.getMonth()+1}-#{n.getDate()} #{n.getHours()}:#{n.getMinutes()}:#{n.getSeconds()}.#{n.getMilliseconds()}"
+	dateStr = "#{n.getFullYear()}-#{pad(n.getMonth()+1)}-#{pad(n.getDate())} #{pad(n.getHours())}:#{pad(n.getMinutes())}:#{pad(n.getSeconds())}.#{pad3(n.getMilliseconds())}"
 	console?.log "#{source} :: #{dateStr} :: #{prefix.toUpperCase()} :: #{message}"
 	if e then console?.log e.toString(), e.stack
 

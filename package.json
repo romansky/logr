@@ -1,6 +1,6 @@
 {
     "name" : "node-logr",
-    "version" : "0.0.5",
+    "version" : "0.1.0",
     "description" : "a super simplistic logger",
     "main" : "./index.js",
     "keywords" : [
@@ -14,7 +14,7 @@
     "dependencies" : {},
     "devDependencies" : {},
     "scripts" : {},
-    "engine" : {"node" : ">=0.4.0"},
+    "engine" : {"node" : ">=0.10.0"},
     "author" : {
         "name" : "Roman Landenband",
         "email" : "roman.land@gmail.com",
