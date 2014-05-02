@@ -8,28 +8,29 @@ pad3 = (value)->
 log = (prefix, source, message, e) ->
 	n = new Date()
 	dateStr = "#{n.getFullYear()}-#{pad(n.getMonth()+1)}-#{pad(n.getDate())} #{pad(n.getHours())}:#{pad(n.getMinutes())}:#{pad(n.getSeconds())}.#{pad3(n.getMilliseconds())}"
-	console?.log "#{source} :: #{dateStr} :: #{prefix.toUpperCase()} :: #{message}"
+	console?.log "#{dateStr} :: #{source} :: #{prefix.toUpperCase()} :: #{message}"
 	if e then console?.log e.toString(), e.stack
 
-exports.getLogger = (source)->
+exports.getLogger = (source,pack = null)->
 	source = if source.indexOf "/" > 0 then source.split("/").pop() else source
-	new _Logger(source)
+	new _Logger(source, pack)
 
 _debug = false
 
 class _Logger
 # @param source String name of class / file name
-	constructor: (@source)->
+	constructor: (@source, @pack)->
 	error : (message,e)=>
-		log("ERROR", @source, message, e)
+		log("ERROR", @_prefix(), message, e)
 	info : (message)=>
-		log("INFO", @source, message, null)
+		log("INFO", @_prefix(), message, null)
 	notice : (message)=>
-		log("NOTICE", @source, message,null)
+		log("NOTICE", @_prefix(), message,null)
 	debug: (message)=>
-		if _debug then log("DEBUG", @source, message, null)
+		if _debug then log("DEBUG", @_prefix(), message, null)
 	errorCB : (message, callback)=>
 		@error(message) ; callback(message)
+	_prefix : => if (@pack) then "#{@pack}@#{@source}" else @source
 
 exports.toggleDebug = (isOverride)->
 	if isOverride? then _debug = isOverride

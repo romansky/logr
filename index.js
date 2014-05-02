@@ -27,23 +27,28 @@
     n = new Date();
     dateStr = "" + (n.getFullYear()) + "-" + (pad(n.getMonth() + 1)) + "-" + (pad(n.getDate())) + " " + (pad(n.getHours())) + ":" + (pad(n.getMinutes())) + ":" + (pad(n.getSeconds())) + "." + (pad3(n.getMilliseconds()));
     if (typeof console !== "undefined" && console !== null) {
-      console.log("" + source + " :: " + dateStr + " :: " + (prefix.toUpperCase()) + " :: " + message);
+      console.log("" + dateStr + " :: " + source + " :: " + (prefix.toUpperCase()) + " :: " + message);
     }
     if (e) {
       return typeof console !== "undefined" && console !== null ? console.log(e.toString(), e.stack) : void 0;
     }
   };
 
-  exports.getLogger = function(source) {
+  exports.getLogger = function(source, pack) {
+    if (pack == null) {
+      pack = null;
+    }
     source = source.indexOf("/" > 0) ? source.split("/").pop() : source;
-    return new _Logger(source);
+    return new _Logger(source, pack);
   };
 
   _debug = false;
 
   _Logger = (function() {
-    function _Logger(source) {
+    function _Logger(source, pack) {
       this.source = source;
+      this.pack = pack;
+      this._prefix = __bind(this._prefix, this);
       this.errorCB = __bind(this.errorCB, this);
       this.debug = __bind(this.debug, this);
       this.notice = __bind(this.notice, this);
@@ -52,26 +57,34 @@
     }
 
     _Logger.prototype.error = function(message, e) {
-      return log("ERROR", this.source, message, e);
+      return log("ERROR", this._prefix(), message, e);
     };
 
     _Logger.prototype.info = function(message) {
-      return log("INFO", this.source, message, null);
+      return log("INFO", this._prefix(), message, null);
     };
 
     _Logger.prototype.notice = function(message) {
-      return log("NOTICE", this.source, message, null);
+      return log("NOTICE", this._prefix(), message, null);
     };
 
     _Logger.prototype.debug = function(message) {
       if (_debug) {
-        return log("DEBUG", this.source, message, null);
+        return log("DEBUG", this._prefix(), message, null);
       }
     };
 
     _Logger.prototype.errorCB = function(message, callback) {
       this.error(message);
       return callback(message);
+    };
+
+    _Logger.prototype._prefix = function() {
+      if (this.pack) {
+        return "" + this.pack + "@" + this.source;
+      } else {
+        return this.source;
+      }
     };
 
     return _Logger;
