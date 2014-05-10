@@ -1,6 +1,6 @@
 {
     "name" : "node-logr",
-    "version" : "0.5.0",
+    "version" : "0.5.1",
     "description" : "a super simplistic logger",
     "main" : "./index.js",
     "keywords" : [

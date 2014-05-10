@@ -8,7 +8,7 @@ pad3 = (value)->
 log = (prefix, source, message, e) ->
 	n = new Date()
 	dateStr = "#{n.getFullYear()}-#{pad(n.getMonth()+1)}-#{pad(n.getDate())} #{pad(n.getHours())}:#{pad(n.getMinutes())}:#{pad(n.getSeconds())}.#{pad3(n.getMilliseconds())}"
-	console?.log "#{dateStr} :: #{source} :: #{prefix.toUpperCase()} :: #{message}"
+	console?.log "#{dateStr} :: #{prefix.toUpperCase()} :: #{source} :: #{message}"
 	if e then console?.log e.toString(), e.stack
 
 exports.getLogger = (source,pack = null)->

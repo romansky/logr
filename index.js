@@ -27,7 +27,7 @@
     n = new Date();
     dateStr = "" + (n.getFullYear()) + "-" + (pad(n.getMonth() + 1)) + "-" + (pad(n.getDate())) + " " + (pad(n.getHours())) + ":" + (pad(n.getMinutes())) + ":" + (pad(n.getSeconds())) + "." + (pad3(n.getMilliseconds()));
     if (typeof console !== "undefined" && console !== null) {
-      console.log("" + dateStr + " :: " + source + " :: " + (prefix.toUpperCase()) + " :: " + message);
+      console.log("" + dateStr + " :: " + (prefix.toUpperCase()) + " :: " + source + " :: " + message);
     }
     if (e) {
       return typeof console !== "undefined" && console !== null ? console.log(e.toString(), e.stack) : void 0;
