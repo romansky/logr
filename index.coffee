@@ -21,13 +21,13 @@ class _Logger
 # @param source String name of class / file name
 	constructor: (@source, @pack)->
 	error : (message,e)=>
-		log("ERROR", @_prefix(), message, e)
+		log("ERR", @_prefix(), message, e)
 	info : (message)=>
-		log("INFO", @_prefix(), message, null)
+		log("INF", @_prefix(), message, null)
 	notice : (message)=>
-		log("NOTICE", @_prefix(), message,null)
+		log("NTC", @_prefix(), message,null)
 	debug: (message)=>
-		if _debug then log("DEBUG", @_prefix(), message, null)
+		if _debug then log("DBG", @_prefix(), message, null)
 	errorCB : (message, callback)=>
 		@error(message) ; callback(message)
 	_prefix : => if (@pack) then "#{@pack}@#{@source}" else @source

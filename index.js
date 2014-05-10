@@ -57,20 +57,20 @@
     }
 
     _Logger.prototype.error = function(message, e) {
-      return log("ERROR", this._prefix(), message, e);
+      return log("ERR", this._prefix(), message, e);
     };
 
     _Logger.prototype.info = function(message) {
-      return log("INFO", this._prefix(), message, null);
+      return log("INF", this._prefix(), message, null);
     };
 
     _Logger.prototype.notice = function(message) {
-      return log("NOTICE", this._prefix(), message, null);
+      return log("NTC", this._prefix(), message, null);
     };
 
     _Logger.prototype.debug = function(message) {
       if (_debug) {
-        return log("DEBUG", this._prefix(), message, null);
+        return log("DBG", this._prefix(), message, null);
       }
     };
 
